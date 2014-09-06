@@ -42,6 +42,16 @@ $('document').ready(function() {
 	});
 
 	function encryptSendText(callback) {
+		// Find text in DOM
+		var t = document.querySelector("[name=message_body]");
+
+		// Encrypt text
+		encryptedMsg = encrypt(t.value);
+		console.log
+		
+		// Replace text in DOM 
+		document.querySelector("[name=message_body]").value = encryptedMsg;
+	
 		callback();
 	}
 	
