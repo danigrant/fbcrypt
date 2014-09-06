@@ -1,0 +1,22 @@
+{
+  "name": "fbcrypt",
+  "version": "1.0.0",
+  "description": "let's encrypt some fb messages",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danigrant/fbcrypt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danigrant/fbcrypt/issues"
+  },
+  "homepage": "https://github.com/danigrant/fbcrypt",
+  "dependencies": {
+    "otr": "^0.2.12"
+  }
+}
