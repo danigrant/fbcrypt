@@ -1,3 +1,6 @@
+var publicKeyString ="dadawd";
+var keyData;
+
 $('document').ready(function() {
 		
 	// ** This styling still does not work perfectly
@@ -55,7 +58,7 @@ $('document').ready(function() {
 		callback();
 	}
 	
-	var keyData;
+	keyData;
 	var options = {
 		numBits: 1024,
 		passphrase: "pass",
@@ -68,7 +71,7 @@ $('document').ready(function() {
 		keyData = openpgp.generateKeyPair(options);
 		console.log(openpgp);
 		console.log(keyData.publicKeyArmored);
-		var publicKeyString = keyData.publicKeyArmored;
+		publicKeyString = keyData.publicKeyArmored;
 		console.log(openpgp);
 		var privateKeyString = keyData.privateKeyArmored;
 		callback();
@@ -107,4 +110,31 @@ $('document').ready(function() {
 	});
 
 
+// replace input DOM with str
+	function insertToSend (str) {
+		document.querySelector("[name=message_body]").value = str;
+	}
+
+	// function to send Public Key
+	function sendPublicKey () {
+		//generate public key
+		var myPublicKey = publicKeyString;
+
+		//insert public key into textarea
+		insertToSend(myPublicKey);
+
+		//send message
+
+
+	}
+
+	sendPublicKey();
+
+
+
 });
+
+
+
+	
+
