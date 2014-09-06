@@ -1,37 +1,16 @@
 {
   "name": "FBCRYPT",
-  "version": "0.0.1",
-  "manifest_version": 2,
-  "description": "Encrypt fb chat.",
-  "homepage_url": "http://facebook.com",
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  "default_locale": "en",
+  "description": "Make the current page red",
+  "version": "2.0",
+  "permissions": [
+    "activeTab"
+  ],
   "background": {
-    "scripts": [
-      "src/bg/background.js"
-    ],
-    "persistent": true
+    "scripts": ["inject.js"],
+    "persistent": false
   },
   "browser_action": {
-    "default_icon": "icons/icon19.png",
-    "default_title": "browser action demo",
-    "default_popup": "src/browser_action/browser_action.html"
+    "default_title": "This is FBCRYPT"
   },
-  "permissions": [
-    "http://facebook.com/"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "https://www.google.com/*"
-      ],
-      "js": [
-        "src/inject/inject.js"
-      ]
-    }
-  ]
+  "manifest_version": 2
 }
