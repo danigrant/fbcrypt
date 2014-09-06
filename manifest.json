@@ -1,16 +1,21 @@
 {
+  "manifest_version": 2,
+
   "name": "FBCRYPT",
-  "description": "Make the current page red",
+  "description": "Let's FBCRYPT",
   "version": "2.0",
+  
   "permissions": [
-    "activeTab"
+    "https://*.facebook.com/",
+    "http://*.facebook.com/",
+    "storage"
   ],
-  "background": {
-    "scripts": ["inject.js"],
-    "persistent": false
-  },
-  "browser_action": {
-    "default_title": "This is FBCRYPT"
-  },
-  "manifest_version": 2
+  
+  "content_scripts": [
+  {
+    "matches": ["http://*.facebook.com/*", "https://*.facebook.com/*"],
+      "css": [],
+      "js": ["lib/jquery-2.1.1.min.js", "lib/openpgp.min.js", "script.js"]
+    }
+  ]
 }
