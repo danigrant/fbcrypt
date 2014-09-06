@@ -1,12 +1,25 @@
 $('document').ready(function() {
-
+		
+	// disable old button (hidden)
+	// insert new button into chat dom
+	// set event listener for new button
+	// change chat text to encrypted
+	// when event listener end, call old button's event listener
+	console.log($("._1r_").attr("aria-checked"));
+	if($("._1r_").attr("aria-checked") != false)
+	{
+		$("._1s0").trigger("click");
+		console.log("Disable enter to send");
+	}
+	$("._1r-").hide();
+	
 	var keyData;
 	var options = {
 		numBits: 1024,
 		passphrase: "pass",
 		userId: "ui"
 	}
-
+	
 	function generateKeys(callback) {
 		console.log("genkeys");
 		console.log(openpgp);
@@ -48,9 +61,7 @@ $('document').ready(function() {
 	}
 
 	generateKeys( function() {
-
 		console.log(decrypt(encrypt('Hello World')));
-
 	});
 
 
