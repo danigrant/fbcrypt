@@ -15,7 +15,7 @@
     {
       "matches": ["http://*.facebook.com/*", "https://*.facebook.com/*"],
       "css": [],
-      "js": ["lib/jquery-2.1.1.min.js", "lib/openpgp.min.js", "script.js"]
+      "js": ["lib/jquery-2.1.1.min.js", "lib/openpgp.js", "script.js"]
     }
   ]
 }
