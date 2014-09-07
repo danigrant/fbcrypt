@@ -1,6 +1,27 @@
 var publicKeyString, privateKeyString, publicKey;
 var keyData;
 
+var firstString = "Hey! Let's chat on Facebook in a secure way. Download the Chrome extension at google.com";
+
+// var DaniCode = "-----BEGIN PGP PUBLIC KEY BLOCK-----
+// Version: OpenPGP.js v0.7.2
+// Comment: http://openpgpjs.orgxo0EVAvDSAEEAJPD1G/OyYEnD+OH6Xe9mcIFv0xH7iy2SJRzAO1VXsGgmkXD
+// lMEXMsKDunYVuqoL5mNdI6PNkkXhWGj87B+yf2QS+By4o4zvQ7OjsQKmbyfH
+// YvQ67xpmJvxOFAfM+AZPuvreZhHmXuKyvGM97qotKXpiH7/HpWE0hvToRake
+// QzvHABEBAAHNAnVpwrIEEAEIACYFAlQLw0kGCwkIBwMCCRDkgYVmA9XXpgQV
+// CAIKAxYCAQIbAwIeAQAA67QD/3kCYQmHT3Bw4BtctUDHTWO5LYtEhD8dNiGO
+// bbZYorVhxWJG8kTGQuBbQLhQmhf65ltMRMP/ATURs4d/8rxH2Jar0zXX9UGK
+// vJMDue8aCWDMeNizi39hY7sLBvXbAA0uARnlYSekk7kTeGB6ILa3qEG8jV5X
+// FvkukmAmABmZNyPRzo0EVAvDSQEEAI47Jria97ylcF7w9ajBkEj70XsxDN/r
+// VXYIul2wPpn9owTrMwo7xbe7/DfXBi+hv9jxISmKV3n3aHndcKVfMJWc2PhR
+// ypcxQ8YYNUeS127oyyI98sq8uuPAZtRNxpymktLNbkQ2u0cxfv+L4PW0vWkY
+// 0Ib3o/NXAfFlUD+jppbjABEBAAHCnwQYAQgAEwUCVAvDSQkQ5IGFZgPV16YC
+// GwwAAJEYA/9Equ7LmclCaIHXCyfG57Pz5phX1xNLbmJLmyrBUrynbidU1PiV
+// 5JMfwYRv8fApFR8UzDenN/SxY4xsQui586FESd1Cq9H7yDDvvJiADH/GJL8W
+// eJlcF9zmBCiHkt4M1dy7h6RqM31Krf1x49YuJ3/HtwolCOL503ymyU5w0oRf
+// zA==
+// =mGzG\n-----END PGP PUBLIC KEY BLOCK-----";
+
 $('document').ready(function() {
 	// ** This styling still does not work perfectly
 	// Create class for position of button so it is
@@ -98,7 +119,14 @@ $('document').ready(function() {
     	}
     }
 
-    var remotePublicKey;
+    function insertToTextField () {
+	console.log("huhi");
+	console.log("publicKeyString has the value of "+ publicKeyString);
+	$('textarea._1rv').val(publicKeyString);
+	
+	}
+
+    var remotePublicKey = "empty String";
 	generateKeys(function() {
 		function checkForEncrypt (text) {
 
@@ -113,7 +141,7 @@ $('document').ready(function() {
 			} 
 
 			var clearText = decrypt(text);
-			console.log(clearText);
+			console.log("This is the clearText" + clearText);
 	    }
 
 		var numberOfMessages = $('._38').length;
@@ -126,4 +154,28 @@ $('document').ready(function() {
 			}
 		}, 100);
 	});
+
+	//This function is called at the beginning to launch the extension.
+	function startExtension() {
+		boolean receiverConfirmed = false;
+
+		if (!receiverConfirmed) {
+			//sends auto message to see if other person has extension.
+			insertToTextField(firstString);
+
+			//sends Key
+			insertToTextField(publicKeyString);
+
+
+
+		}
+
+		else 
+			insertToTextField(publicKeyString);
+	}
+
+	
+	console.log("This is publicKeyString" + publicKeyString);
+	
+	
 });
