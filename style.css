@@ -1,0 +1,34 @@
+.myplaintext {
+	padding: 5px;
+	padding-right: 28px;
+	color: #0073CF;
+	font-size: 12px;
+	text-align: right;
+}
+
+.theirplaintext {
+	padding: 5px;
+	color: #417DC1;
+	font-size: 12px;
+	text-align: left;
+}
+
+#newDiv {
+	display:block; 
+	position: relative; 
+	top: -635px; 
+	width: 38%; 
+	height: 630px; 
+	left: 62.759%; 
+	border: 1px solid #eee; 
+	z-index: 1000;
+	background: white;
+}
+
+#title {
+	font-size: 14px;
+	background-color: #f2f2f2;
+	padding: 10px;
+	text-align: center;
+	font-weight: bold;
+}
