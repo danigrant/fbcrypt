@@ -1,4 +1,5 @@
 var publicKeyString ="dadawd";
+var receiverPublicKeyString;
 var keyData;
 
 $('document').ready(function() {
@@ -110,12 +111,12 @@ $('document').ready(function() {
 	});
 
 
-// replace input DOM with str
+	// replace input DOM with string
 	function insertToSend (str) {
 		document.querySelector("[name=message_body]").value = str;
 	}
 
-	// function to send Public Key
+	// Send Public Key
 	function sendPublicKey () {
 		//generate public key
 		var myPublicKey = publicKeyString;
@@ -125,10 +126,39 @@ $('document').ready(function() {
 
 		//send message
 
-
 	}
 
-	sendPublicKey();
+
+	 sendPublicKey();
+
+	// Returns Last Message
+	function getLastMessage () {
+		var t = "dwad";
+		var t = $('.webMessengerMessageGroup .clearfix p:last').text();
+
+		return t;
+	}
+
+	function readPublicKey (){
+		var lastMessage = getLastMessage();
+		if ((lastMessage).substring(0, 25) === "-----BEGIN PGP PUBLIC KEY BLOCK-----") {
+			//save the key.
+			receiverPublicKeyString = t;
+
+			//save the key in Chrome
+			chrome.storage.sync.set({
+				'publicKey' : receiverPublicKeyString,
+			});
+		}
+	}
+
+
+
+	readPublicKey();
+
+
+
+	
 
 
 
