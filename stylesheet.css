@@ -1,0 +1,62 @@
+.container {
+	width: 100%;
+	
+}
+
+.filler {
+	width: auto;
+	padding: 0 10em;
+}
+
+.title-header {
+	margin: 0 auto;
+	text-align: center;
+	font-family: 'Raleway', 'Lato', 'Open Sans';
+	
+	font-weight: 100;
+
+}
+
+h1.title-header {
+	font-size: 10em;
+}
+
+h4.title-header {
+	font-size: 3em;
+}
+
+#hack-logo {
+	display: block;
+	margin: 0 auto;
+	width: 50%;
+}
+
+.weird {
+	color: transparent;
+}
+
+.none {
+	display: none;
+}
+
+@media screen and (max-width: 780px) {
+
+	h1.title-header {
+	font-size: 9em;
+	}
+
+	h4.title-header {
+	font-size: 2.5em;
+	}
+	
+	#hack-logo {
+	display: block;
+	margin: 0 auto;
+	width: 70%;
+	}
+
+	.filler {
+		padding: 0;
+	}
+
+	}
