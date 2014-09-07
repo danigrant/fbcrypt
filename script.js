@@ -1,5 +1,4 @@
-var publicKeyString ="dadawd";
-var receiverPublicKeyString;
+var publicKeyString, privateKeyString, publicKey;
 var keyData;
 
 $('document').ready(function() {
@@ -57,20 +56,13 @@ $('document').ready(function() {
 	
 	function generateKeys(callback) {
 		keyData = openpgp.generateKeyPair(options);
-<<<<<<< HEAD
-		var publicKeyString = keyData.publicKeyArmored;
-=======
-		console.log(openpgp);
-		console.log(keyData.publicKeyArmored);
 		publicKeyString = keyData.publicKeyArmored;
-		console.log(openpgp);
->>>>>>> d59f07f02c90f723e23d18627227ced95dbefbff
-		var privateKeyString = keyData.privateKeyArmored;
+		privateKeyString = keyData.privateKeyArmored;
 		callback();
 	}
 
 	function encrypt(str) {
-		var publicKey = openpgp.key.readArmored(keyData.publicKeyArmored);
+		publicKey = openpgp.key.readArmored(keyData.publicKeyArmored);
 		var pgpMessage = openpgp.encryptMessage(publicKey.keys, str);
 		return pgpMessage;
 	}
