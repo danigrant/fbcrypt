@@ -1,9 +1,7 @@
-var publicKeyString ="dadawd";
-var receiverPublicKeyString;
+var publicKeyString, privateKeyString, publicKey;
 var keyData;
 
 $('document').ready(function() {
-		
 	// ** This styling still does not work perfectly
 	// Create class for position of button so it is
 	// applied at the correct time??
@@ -38,11 +36,11 @@ $('document').ready(function() {
 	$("#u_0_s2").click( function() {
 		console.log("clicked!");
 		
-		// Change text in DOM to be encrypted
-		encryptSendText( function() {
-			// Call original Reply button's event listener (on callback)
-			$("#u_0_s").trigger("click");
-		});		
+	// Change text in DOM to be encrypted
+	encryptSendText( function() {
+		// Call original Reply button's event listener (on callback)
+		$("#u_0_s").trigger("click");
+	});		
 	});
 
 	function encryptSendText(callback) {
@@ -67,31 +65,20 @@ $('document').ready(function() {
 	}
 	
 	function generateKeys(callback) {
-		console.log("genkeys");
-		console.log(openpgp);
 		keyData = openpgp.generateKeyPair(options);
-		console.log(openpgp);
-		console.log(keyData.publicKeyArmored);
 		publicKeyString = keyData.publicKeyArmored;
-		console.log(openpgp);
-		var privateKeyString = keyData.privateKeyArmored;
+		privateKeyString = keyData.privateKeyArmored;
+		console.log(publicKeyString);
 		callback();
 	}
 
 	function encrypt(str) {
-		console.log("encrypt");
-		console.log(openpgp);
-		console.log(keyData);
-		console.log(keyData.publicKeyArmored);
-		var publicKey = openpgp.key.readArmored(keyData.publicKeyArmored);
+		publicKey = openpgp.key.readArmored(keyData.publicKeyArmored);
 		var pgpMessage = openpgp.encryptMessage(publicKey.keys, str);
-		console.log(pgpMessage);
 		return pgpMessage;
 	}
 
 	function decrypt(pgpMessage) {
-		console.log("decrypt");
-		console.log(openpgp);
 		var privateKey = openpgp.key.readArmored(keyData.privateKeyArmored).keys[0];
 		privateKey.decrypt('pass');
 		pgpMessage = openpgp.message.readArmored(pgpMessage);
@@ -102,69 +89,51 @@ $('document').ready(function() {
 	function findTypedMessage () {
 		var t = document.querySelector("[name=message_body]");
 		var str = t.value;
+		console.log("this is the string");
 		console.log(str);
 		return str;
 	}
 
-	generateKeys( function() {
-		//console.log(decrypt(encrypt('Hello World')));
-	});
-
-
-	// replace input DOM with string
-	function insertToSend (str) {
-		document.querySelector("[name=message_body]").value = str;
-	}
-
-	// Send Public Key
-	function sendPublicKey () {
-		//generate public key
-		var myPublicKey = publicKeyString;
-
-		//insert public key into textarea
-		insertToSend(myPublicKey);
-
-		//send message
-
-	}
-
-
-	 sendPublicKey();
-
-	// Returns Last Message
 	function getLastMessage () {
-		var t = "dwad";
-		var t = $('.webMessengerMessageGroup .clearfix p:last').text();
+        console.log("get last message");
+        var t = $('.webMessengerMessageGroup .clearfix p:nth-last-child(2)').text();
+        return t;
+    }
 
-		return t;
-	}
+    function checkForDecrypt () {
+    	console.log("checking for decryption");
+		console.log(getLastMessage().substring());
+    	if(getLastMessage().substring(0, 26) === "-----BEGIN PGP MESSAGE-----") {
+    		console.log("this should be decrypted");
+    	}
+    }
 
-	function readPublicKey (){
-		var lastMessage = getLastMessage();
-		if ((lastMessage).substring(0, 25) === "-----BEGIN PGP PUBLIC KEY BLOCK-----") {
-			//save the key.
-			receiverPublicKeyString = t;
+    var remotePublicKey;
+	generateKeys(function() {
+		function checkForEncrypt (text) {
 
-			//save the key in Chrome
-			chrome.storage.sync.set({
-				'publicKey' : receiverPublicKeyString,
-			});
-		}
-	}
+			if (!remotePublicKey) {
+				var isPgpBlock = /^-----BEGIN PGP PUBLIC KEY BLOCK-----/mi.test(text);
+				if (isPgpBlock) {
+					if (text !== publicKey)
+					remotePublicKey = text;
+					console.log(remotePublicKey);
+				}
+				return;
+			} 
 
+			var clearText = decrypt(text);
+			console.log(clearText);
+	    }
 
-
-	readPublicKey();
-
-
-
-	
-
-
-
+		var numberOfMessages = $('._38').length;
+		setInterval(function () { 
+			var newNumberOfMessages = $('._38').length;
+			if (newNumberOfMessages !== numberOfMessages) {
+				var text = $($('._38')[newNumberOfMessages - 1]).text();
+				checkForEncrypt(text);
+				numberOfMessages = newNumberOfMessages;
+			}
+		}, 100);
+	});
 });
-
-
-
-	
-
