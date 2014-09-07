@@ -107,6 +107,7 @@ $('document').ready(function() {
 				if (isPgpBlock) {
 					if (text !== publicKey)
 					remotePublicKey = text;
+					console.log(remotePublicKey);
 				}
 				return;
 			} 
