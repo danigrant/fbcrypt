@@ -1,3 +1,7 @@
+var publicKeyString ="dadawd";
+var receiverPublicKeyString;
+var keyData;
+
 $('document').ready(function() {
 	// ** This styling still does not work perfectly
 	// Create class for position of button so it is
@@ -44,7 +48,7 @@ $('document').ready(function() {
 		callback();
 	}
 	
-	var keyData;
+	keyData;
 	var options = {
 		numBits: 1024,
 		passphrase: "pass",
@@ -53,7 +57,14 @@ $('document').ready(function() {
 	
 	function generateKeys(callback) {
 		keyData = openpgp.generateKeyPair(options);
+<<<<<<< HEAD
 		var publicKeyString = keyData.publicKeyArmored;
+=======
+		console.log(openpgp);
+		console.log(keyData.publicKeyArmored);
+		publicKeyString = keyData.publicKeyArmored;
+		console.log(openpgp);
+>>>>>>> d59f07f02c90f723e23d18627227ced95dbefbff
 		var privateKeyString = keyData.privateKeyArmored;
 		callback();
 	}
