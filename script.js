@@ -58,6 +58,7 @@ $('document').ready(function() {
 		keyData = openpgp.generateKeyPair(options);
 		publicKeyString = keyData.publicKeyArmored;
 		privateKeyString = keyData.privateKeyArmored;
+		console.log(publicKeyString);
 		callback();
 	}
 
